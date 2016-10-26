@@ -47,6 +47,10 @@ private:
     bool go_go_go;
     bool draw_velocity;
     bool draw_as_line;
+    bool draw_bodies;
+
+    std::vector<int> body_numbers { 10, 15, 25, 50, 100, 250, 500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000};
+    int body_number_index = 7;
 
     std::vector<clock_t> times;
     //bh_tree my_tree;
@@ -68,15 +72,13 @@ void BasicApp::keyDown( KeyEvent event )
 {
 	std::cout << event.getCode() << " : " << event.getChar() << std::endl;
 
-	if( event.getChar() == 'f' ) {
-		// Toggle full screen when the user presses the 'f' key.
-		setFullScreen( ! isFullScreen() );
-	}
-	else if( event.getCode() == KeyEvent::KEY_SPACE ) {
+    if( event.getChar() == 'f' ) {
+        // Toggle full screen when the user presses the 'f' key.
+        setFullScreen( ! isFullScreen() );
+    } else if( event.getCode() == KeyEvent::KEY_SPACE ) {
 		// Clear the list of points when the user presses the space bar.
 		mPoints.clear();
-	}
-	else if( event.getCode() == KeyEvent::KEY_ESCAPE ) {
+	} else if( event.getCode() == KeyEvent::KEY_ESCAPE ) {
 		// Exit full screen, or quit the application, when the user presses the ESC key.
 		if( isFullScreen() )
 			setFullScreen( false );
@@ -95,6 +97,22 @@ void BasicApp::keyDown( KeyEvent event )
         draw_as_line = !draw_as_line;
     } else if (event.getCode() == 'v') {
         draw_velocity = !draw_velocity;
+    } else if (event.getCode() == 'b') {
+        draw_bodies = !draw_bodies;
+    } else if (event.getCode() == KeyEvent::KEY_UP ) {
+        bodies.clear();
+        if (body_number_index < body_numbers.size()-1) {
+            ++body_number_index;
+        }
+        many_bodies_test(bodies, body_numbers[body_number_index]);
+
+    } else if (event.getCode() == KeyEvent::KEY_DOWN ) {
+        bodies.clear();
+        if (body_number_index > 0) {
+            --body_number_index;
+        }
+        many_bodies_test(bodies, body_numbers[body_number_index]);
+
     }
 
 }
@@ -104,7 +122,7 @@ void BasicApp::draw()
 	// Clear the contents of the window. This call will clear
 	// both the color and depth buffers.
 	//gl::clear( Color::gray( 0.1f ) );
-    float gray = sin( getElapsedSeconds() ) * 0.5f + 0.5f;
+    float gray = sinf( getElapsedSeconds() ) * 0.5f + 0.5f;
 	//gl::clear( Color(gray, gray, gray), true);
     gl::clear();
 
@@ -116,12 +134,14 @@ void BasicApp::draw()
 
 
     gl::color( 0.0f, 0.0f, 1.0f);
-    for (auto &e : bodies) {
-        auto pt = scale_point_to_screen(e->get_position(), r, getWindowSize());
-        auto mass = std::log(std::sqrt(e->get_mass()))/std::log(10);
-
-        gl::drawSolidCircle(pt, mass);
+    if (draw_bodies) {
+        for (auto &e : bodies) {
+            auto pt = scale_point_to_screen(e->get_position(), r, getWindowSize());
+            auto mass = std::log(std::sqrt(e->get_mass()))/std::log(10);
+            gl::drawSolidCircle(pt, mass);
+        }
     }
+
     gl::color( 0.0f, 1.0f, 0.5f);
     if (draw_as_line) {
         for (auto &e : bodies) {
@@ -177,6 +197,8 @@ void BasicApp::setup() {
     go_go_go = false;
     draw_velocity = false;
     draw_as_line = false;
+
+    draw_bodies = true;
 
     // find max x and y vels
     //

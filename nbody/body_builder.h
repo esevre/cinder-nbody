@@ -106,8 +106,9 @@ void body_test_1(std::vector<std::shared_ptr<body>> &bodies) {
 //
 //  Very cool with current settings!
 //
+//  get the number of bodies as an argument passed
 //    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****    ****
-void many_bodies_test(std::vector<std::shared_ptr<body>> &bodies) {
+void many_bodies_test(std::vector<std::shared_ptr<body>> &bodies, int num_bodies = 500) {
     double G = 6.674e-11;
     double pi = acos(-1);
 
@@ -116,8 +117,6 @@ void many_bodies_test(std::vector<std::shared_ptr<body>> &bodies) {
     double big_mass = 10000000;
     double mass = 10000;
 
-
-    int num_bodies = 500;
 
     // create and add central mass (black hole)
     std::shared_ptr<body> bdy = std::make_shared<body>(big_mass, point(0,0), point(0,0));
