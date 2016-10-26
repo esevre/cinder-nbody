@@ -18,6 +18,7 @@ ci::vec2 point_to_vec2(const point p) {
 //
 //  Scale point to fit on screen
 //
+// todo: update this so that it scales without distortion
 ci::ivec2 scale_point_to_screen(const point &p, const region &r, const ci::ivec2 screen) {
     double x_offset = r.get_min_corner().x();
     double y_offset = r.get_min_corner().y();
@@ -25,8 +26,10 @@ ci::ivec2 scale_point_to_screen(const point &p, const region &r, const ci::ivec2
     double x_scale = screen.x / r.width();
     double y_scale = screen.y / r.height();
 
-    double x = (p.x() - x_offset)*x_scale;
-    double y = (p.y() - y_offset)*y_scale;
+    double scale = x_scale > y_scale ? y_scale : x_scale;
+
+    double x = (p.x() - x_offset)*scale;
+    double y = (p.y() - y_offset)*scale;
 
     ci::ivec2 pt((int)x, (int)y);
     return pt;

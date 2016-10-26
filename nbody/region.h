@@ -22,6 +22,7 @@ public:
     //
     // todo: add constructor code to ensure that the min_corner is actually min
     //       this will allow for a consistent region for any two oposite corners given
+    region() : min_corner(point(0,0)), max_corner(point(0,0)), center(point(0,0)) { }
     region(const point &min_corner, const point &max_corner) : min_corner(min_corner), max_corner(max_corner)
     {
         center = min_corner + (max_corner - min_corner) / 2.0;
@@ -43,6 +44,12 @@ public:
     }
     point get_max_corner() const {
         return max_corner;
+    }
+
+    void set(double minx, double miny, double maxx, double maxy) {
+        min_corner = point(minx, miny);
+        max_corner = point(maxx, maxy);
+        center = min_corner + (max_corner - min_corner) / 2.0;
     }
 
     //

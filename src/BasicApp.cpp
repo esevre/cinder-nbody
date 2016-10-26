@@ -14,8 +14,8 @@
 //#include "cinder/gl/Texture.h"
 
 
-#include <ctime>
-#include <iostream>
+//#include <ctime>
+//#include <iostream>
 
 using namespace ci;
 using namespace ci::app;
@@ -53,7 +53,10 @@ private:
     int body_number_index = 7;
 
     std::vector<clock_t> times;
-    //bh_tree my_tree;
+
+    // todo: add the region to the Basic APP
+    region tree_region;
+    region draw_region;
 
 };
 
@@ -117,6 +120,10 @@ void BasicApp::keyDown( KeyEvent event )
 
 }
 
+//
+//
+//  todo:  update the code in draw, so that the image is not distorted with the screen
+//
 void BasicApp::draw()
 {
 	// Clear the contents of the window. This call will clear
@@ -192,6 +199,9 @@ void BasicApp::draw()
 void BasicApp::setup() {
     //AppBase::setup();
     //body_test_1(bodies);
+
+    tree_region.set(-1e4, -1e4, 1e4, 1e4);
+    draw_region.set( -1.5e3, -1.5e3, 1.5e3, 1.5e3);
     many_bodies_test(bodies);
 
     go_go_go = false;

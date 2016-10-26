@@ -149,4 +149,49 @@ void many_bodies_test(std::vector<std::shared_ptr<body>> &bodies, int num_bodies
 }
 
 
+void add_galaxy_to_body_list(std::vector<std::shared_ptr<body>> &bodies, point center, double min_radius=5000, double max_radius=10000, int num_bodies = 500) {
+    double G = 6.674e-11;
+    double pi = acos(-1);
+
+    double big_mass = 10000000;
+    double mass = 10000;
+
+
+    // create and add central mass (black hole)
+    std::shared_ptr<body> bdy = std::make_shared<body>(big_mass, center, point(0,0));
+    bodies.push_back(bdy);
+
+
+
+    for (int i = 0; i < num_bodies; ++i) {
+        double radius = generate_random_in_range(min_radius, max_radius); // random radius between 5000 and 10000
+        double theta = generate_random_in_range(0, 2*pi);  // random between 0 and 2*pi
+        double phi = theta + pi / 4;
+
+        double velocity = 0.75*std::sqrt(G*(big_mass + mass) / radius);
+
+
+        double x = radius * cos(theta) + center.x();
+        double y = radius * sin(theta) + center.y();
+
+        double vx = velocity * cos(phi);
+        double vy = velocity * sin(phi);
+
+        point pos(x, y);
+        point vel(vx, vy);
+        std::shared_ptr<body> b = std::make_shared<body>(mass, pos, vel);
+
+        bodies.push_back(b);
+    }
+
+
+}
+
+
+void create_two_galaxys(std::vector<std::shared_ptr<body>> &bodies) {
+
+
+
+}
+
 #endif //TREE_CODE_BODY_BUILDER_H
