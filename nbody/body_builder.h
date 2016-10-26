@@ -197,7 +197,9 @@ void add_galaxy_to_body_list(std::vector<std::shared_ptr<body>> &bodies, point c
 //
 void create_two_galaxies(std::vector<std::shared_ptr<body>> &bodies, const region &r, int num_bodies=500) {
 
-//    point global_center = r.get_center();
+    point global_center = r.get_center();
+//    double width = r.width();
+
 //    point upper_right_center = (global_center + r.get_max_corner()) / 2.0;
 //    point lower_left_center = (global_center - r.get_min_corner()) / 2.0;
 //

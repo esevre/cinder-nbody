@@ -136,14 +136,15 @@ void BasicApp::draw()
     // my_image = gl::Texture( loadImage( loadResource(filename)));
     // gl::draw( my_image, getWindowBounds());
 
-    region r( -1.5e3, -1.5e3, 1.5e3, 1.5e3);
-
-
 
     gl::color( 0.0f, 0.0f, 1.0f);
     if (draw_bodies) {
         for (auto &e : bodies) {
-            auto pt = scale_point_to_screen(e->get_position(), r, getWindowSize());
+            gl::color( 0.0f, 0.0f, 1.0f);
+            if (e->get_mass() > 10000) {
+                gl::color( 1.0f, 0.0f, 0.0f);
+            }
+            auto pt = scale_point_to_screen(e->get_position(), draw_region, getWindowSize());
             auto mass = std::log(std::sqrt(e->get_mass()))/std::log(10);
             gl::drawSolidCircle(pt, mass);
         }
@@ -152,8 +153,12 @@ void BasicApp::draw()
     gl::color( 0.0f, 1.0f, 0.5f);
     if (draw_as_line) {
         for (auto &e : bodies) {
-            auto pt_last = scale_point_to_screen(e->get_last_position(), r, getWindowSize());
-            auto pt_curr = scale_point_to_screen(e->get_position(), r, getWindowSize());
+            gl::color( 0.0f, 1.0f, 0.5f);
+            if (e->get_mass() > 10000) {
+                gl::color( 0.0f, 1.0f, 1.0f);
+            }
+            auto pt_last = scale_point_to_screen(e->get_last_position(), draw_region, getWindowSize());
+            auto pt_curr = scale_point_to_screen(e->get_position(), draw_region, getWindowSize());
             gl::begin(GL_LINE_STRIP);
             gl::vertex(pt_last);
             gl::vertex(pt_curr);
@@ -164,10 +169,14 @@ void BasicApp::draw()
     // draw velocity vectors
     if (draw_velocity) {
         for (auto &e : bodies) {
+            gl::color( 0.0f, 1.0f, 0.5f);
+            if (e->get_mass() > 10000) {
+                gl::color( 0.0f, 1.0f, 1.0f);
+            }
             auto pt = e->get_position();
             double scale = 40000.0;
-            auto pt_pos = scale_point_to_screen(pt, r, getWindowSize());
-            auto pt_vel = scale_point_to_screen(pt + e->get_velocity()*scale, r, getWindowSize());
+            auto pt_pos = scale_point_to_screen(pt, draw_region, getWindowSize());
+            auto pt_vel = scale_point_to_screen(pt + e->get_velocity()*scale, draw_region, getWindowSize());
             gl::begin(GL_LINE_STRIP);
             gl::vertex(pt_pos);
             gl::vertex(pt_vel);
@@ -201,7 +210,7 @@ void BasicApp::setup() {
     //body_test_1(bodies);
 
     tree_region.set(-1e4, -1e4, 1e4, 1e4);
-    draw_region.set( -1.5e3, -1.5e3, 1.5e3, 1.5e3);
+    draw_region.set( -2.5e3, -2.5e3, 2.5e3, 2.5e3);
 
     //many_bodies_test(bodies);
     auto center = getWindowCenter();
@@ -244,15 +253,15 @@ void BasicApp::update() {
         auto forces = compute_forces(bodies, r);
         update_bodies_with_forces(bodies, forces);
 
-        t = clock() - t;
-        times.push_back(t);
-        double sum = 0.0;
-        for (auto &e : times) {
-            sum += t;
-        }
-        sum /= CLOCKS_PER_SEC;
-        sum /= times.size();
-        std::cout << "average time: " << sum << ", for number of bodies = " << bodies.size() << std::endl;
+        //t = clock() - t;
+        //times.push_back(t);
+        //double sum = 0.0;
+        //for (auto &e : times) {
+        //    sum += t;
+        //}
+        //sum /= CLOCKS_PER_SEC;
+        //sum /= times.size();
+        //std::cout << "average time: " << sum << ", for number of bodies = " << bodies.size() << std::endl;
 
     }
 

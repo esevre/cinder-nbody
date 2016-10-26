@@ -13,9 +13,8 @@
   <component name="ChangeListManager">
     <list default="true" id="d2426948-fc90-4c32-a365-329fc7c146a1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/Debug/BasicApp.app/Contents/MacOS/BasicApp" afterPath="$PROJECT_DIR$/build/Debug/BasicApp.app/Contents/MacOS/BasicApp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../nbody/bh_tree_node.h" afterPath="$PROJECT_DIR$/../../nbody/bh_tree_node.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../nbody/body_builder.h" afterPath="$PROJECT_DIR$/../../nbody/body_builder.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../nbody/nbody_cinder.h" afterPath="$PROJECT_DIR$/../../nbody/nbody_cinder.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../nbody/region.h" afterPath="$PROJECT_DIR$/../../nbody/region.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../src/BasicApp.cpp" afterPath="$PROJECT_DIR$/../../src/BasicApp.cpp" />
     </list>
@@ -50,8 +49,8 @@
       <file leaf-file-name="BasicApp.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../../src/BasicApp.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
-              <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+            <state relative-caret-position="216">
+              <caret line="144" column="40" selection-start-line="144" selection-start-column="40" selection-end-line="144" selection-end-column="40" />
               <folding>
                 <element signature="e#0#27#0" expanded="true" />
                 <element signature="e#108#128#0" expanded="true" />
@@ -63,34 +62,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="App.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../../../../../../../local/cinder/Cinder/include/cinder/app/App.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AppMac.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../../../../../../../local/cinder/Cinder/include/cinder/app/cocoa/AppMac.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="477">
-              <caret line="103" column="0" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="nbody_cinder.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../../nbody/nbody_cinder.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="31" column="34" selection-start-line="31" selection-start-column="34" selection-end-line="31" selection-end-column="34" />
+            <state relative-caret-position="255">
+              <caret line="17" column="29" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
               <folding>
                 <element signature="e#110#127#0" expanded="true" />
-                <element signature="e#864#1593#0" expanded="false" />
+                <element signature="e#372#933#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -99,21 +78,22 @@
       <file leaf-file-name="body_builder.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../../nbody/body_builder.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="319">
-              <caret line="151" column="117" selection-start-line="151" selection-start-column="117" selection-end-line="151" selection-end-column="117" />
+            <state relative-caret-position="203">
+              <caret line="200" column="2" selection-start-line="200" selection-start-column="2" selection-end-line="200" selection-end-column="2" />
               <folding>
                 <element signature="e#349#368#0" expanded="true" />
-                <marker date="1477474634000" expanded="false" signature="1278:3190" ph="{...}" />
+                <element signature="e#4782#5986#0" expanded="false" />
+                <marker date="1477478703000" expanded="false" signature="1278:3190" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bh_tree_node.h" pinned="false" current-in-tab="false">
+      <file leaf-file-name="bh_tree_node.h" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../../nbody/bh_tree_node.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4245">
-              <caret line="283" column="44" selection-start-line="283" selection-start-column="44" selection-end-line="283" selection-end-column="44" />
+            <state relative-caret-position="40">
+              <caret line="250" column="24" selection-start-line="250" selection-start-column="24" selection-end-line="250" selection-end-column="24" />
               <folding>
                 <element signature="e#1400#1596#0" expanded="false" />
                 <element signature="e#1602#2366#0" expanded="false" />
@@ -145,11 +125,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="region.h" pinned="false" current-in-tab="true">
+      <file leaf-file-name="region.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../../nbody/region.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="24" column="84" selection-start-line="24" selection-start-column="84" selection-end-line="24" selection-end-column="84" />
+            <state relative-caret-position="525">
+              <caret line="46" column="5" selection-start-line="46" selection-start-column="5" selection-end-line="46" selection-end-column="5" />
               <folding>
                 <element signature="e#350#605#0" expanded="false" />
                 <element signature="e#610#790#0" expanded="false" />
@@ -175,11 +155,11 @@
         <option value="$PROJECT_DIR$/../../nbody/point.h" />
         <option value="$PROJECT_DIR$/../../nbody/bh_tree.h" />
         <option value="$PROJECT_DIR$/../../nbody/body.h" />
-        <option value="$PROJECT_DIR$/../../nbody/bh_tree_node.h" />
-        <option value="$PROJECT_DIR$/../../src/BasicApp.cpp" />
+        <option value="$PROJECT_DIR$/../../nbody/region.h" />
         <option value="$PROJECT_DIR$/../../nbody/nbody_cinder.h" />
         <option value="$PROJECT_DIR$/../../nbody/body_builder.h" />
-        <option value="$PROJECT_DIR$/../../nbody/region.h" />
+        <option value="$PROJECT_DIR$/../../src/BasicApp.cpp" />
+        <option value="$PROJECT_DIR$/../../nbody/bh_tree_node.h" />
       </list>
     </option>
   </component>
@@ -190,10 +170,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="44" />
-    <option name="y" value="-1417" />
-    <option name="width" value="1367" />
-    <option name="height" value="1061" />
+    <option name="x" value="1" />
+    <option name="y" value="23" />
+    <option name="width" value="1280" />
+    <option name="height" value="773" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -476,7 +456,7 @@
       <workItem from="1477390581863" duration="12270000" />
       <workItem from="1477422117905" duration="262000" />
       <workItem from="1477448777252" duration="17157000" />
-      <workItem from="1477470592160" duration="4178000" />
+      <workItem from="1477470592160" duration="7803000" />
     </task>
     <task id="LOCAL-00001" summary="Updated the many_body_test to take the number of bodies as an input.&#10;Also added functionality to use up/down arrow to increase decrease the number of particles.">
       <created>1477473479673</created>
@@ -485,23 +465,37 @@
       <option name="project" value="LOCAL" />
       <updated>1477473479673</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="added code to keep the visualization square regardless of window aspect ratio.&#10;Also added code to create galaxies. Still need to test the multi-galaxy code is working&#10;">
+      <created>1477475078530</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1477475078530</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Basic multibody galaxy code added and working">
+      <created>1477476950646</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1477476950646</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42424000" />
+    <option name="totallyTimeSpent" value="46049000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="44" y="-1417" width="1367" height="1061" extended-state="0" />
+    <frame x="1" y="23" width="1280" height="773" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22288261" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23828435" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30856553" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30837005" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32714137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14447884" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20558003" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.572" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -527,13 +521,17 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
     <option name="INCLUDE_TEXT_INTO_SHELF" value="true" />
     <MESSAGE value="Updated the many_body_test to take the number of bodies as an input.&#10;Also added functionality to use up/down arrow to increase decrease the number of particles." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated the many_body_test to take the number of bodies as an input.&#10;Also added functionality to use up/down arrow to increase decrease the number of particles." />
+    <MESSAGE value="added code to keep the visualization square regardless of window aspect ratio.&#10;Also added code to create galaxies. Still need to test the multi-galaxy code is working&#10;" />
+    <MESSAGE value="Basic multibody galaxy code added and working" />
+    <option name="LAST_COMMIT_MESSAGE" value="Basic multibody galaxy code added and working" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="4" />
+      <option name="time" value="5" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="CMakeRunConfiguration">
@@ -570,7 +568,7 @@
           <caret line="36" column="60" selection-start-line="36" selection-start-column="60" selection-end-line="36" selection-end-column="60" />
           <folding>
             <element signature="e#110#127#0" expanded="true" />
-            <element signature="e#864#1593#0" expanded="false" />
+            <element signature="e#372#933#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -581,7 +579,8 @@
           <caret line="119" column="24" selection-start-line="119" selection-start-column="24" selection-end-line="119" selection-end-column="24" />
           <folding>
             <element signature="e#349#368#0" expanded="true" />
-            <marker date="1477474634000" expanded="false" signature="1278:3190" ph="{...}" />
+            <element signature="e#4782#5986#0" expanded="false" />
+            <marker date="1477478703000" expanded="false" signature="1278:3190" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -712,7 +711,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#110#127#0" expanded="true" />
-            <element signature="e#864#1593#0" expanded="false" />
+            <element signature="e#372#933#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -761,7 +760,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#349#368#0" expanded="true" />
-            <marker date="1477474634000" expanded="false" signature="1278:3190" ph="{...}" />
+            <element signature="e#4782#5986#0" expanded="false" />
+            <marker date="1477478703000" expanded="false" signature="1278:3190" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -820,47 +820,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../nbody/bh_tree_node.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4245">
-          <caret line="283" column="44" selection-start-line="283" selection-start-column="44" selection-end-line="283" selection-end-column="44" />
-          <folding>
-            <element signature="e#1400#1596#0" expanded="false" />
-            <element signature="e#1602#2366#0" expanded="false" />
-            <element signature="e#5692#6264#0" expanded="false" />
-            <element signature="e#6270#6770#0" expanded="false" />
-            <element signature="e#6776#7591#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../nbody/nbody_cinder.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="31" column="34" selection-start-line="31" selection-start-column="34" selection-end-line="31" selection-end-column="34" />
-          <folding>
-            <element signature="e#110#127#0" expanded="true" />
-            <element signature="e#864#1593#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../nbody/body_builder.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="151" column="117" selection-start-line="151" selection-start-column="117" selection-end-line="151" selection-end-column="117" />
-          <folding>
-            <element signature="e#349#368#0" expanded="true" />
-            <marker date="1477474634000" expanded="false" signature="1278:3190" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -880,10 +844,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../../nbody/region.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="46" column="5" selection-start-line="46" selection-start-column="5" selection-end-line="46" selection-end-column="5" />
+          <folding>
+            <element signature="e#350#605#0" expanded="false" />
+            <element signature="e#610#790#0" expanded="false" />
+            <element signature="e#795#990#0" expanded="false" />
+            <element signature="e#1294#1505#0" expanded="false" />
+            <element signature="e#6097#6404#0" expanded="false" />
+            <element signature="e#6405#8488#0" expanded="false" />
+            <element signature="e#8489#8809#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../nbody/nbody_cinder.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="29" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
+          <folding>
+            <element signature="e#110#127#0" expanded="true" />
+            <element signature="e#372#933#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/../../src/BasicApp.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+        <state relative-caret-position="216">
+          <caret line="144" column="40" selection-start-line="144" selection-start-column="40" selection-end-line="144" selection-end-column="40" />
           <folding>
             <element signature="e#0#27#0" expanded="true" />
             <element signature="e#108#128#0" expanded="true" />
@@ -894,18 +885,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../nbody/region.h">
+    <entry file="file://$PROJECT_DIR$/../../nbody/body_builder.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="24" column="84" selection-start-line="24" selection-start-column="84" selection-end-line="24" selection-end-column="84" />
+        <state relative-caret-position="203">
+          <caret line="200" column="2" selection-start-line="200" selection-start-column="2" selection-end-line="200" selection-end-column="2" />
           <folding>
-            <element signature="e#350#605#0" expanded="false" />
-            <element signature="e#610#790#0" expanded="false" />
-            <element signature="e#795#990#0" expanded="false" />
-            <element signature="e#1294#1505#0" expanded="false" />
-            <element signature="e#6097#6404#0" expanded="false" />
-            <element signature="e#6405#8488#0" expanded="false" />
-            <element signature="e#8489#8809#0" expanded="false" />
+            <element signature="e#349#368#0" expanded="true" />
+            <element signature="e#4782#5986#0" expanded="false" />
+            <marker date="1477478703000" expanded="false" signature="1278:3190" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../nbody/bh_tree_node.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="250" column="24" selection-start-line="250" selection-start-column="24" selection-end-line="250" selection-end-column="24" />
+          <folding>
+            <element signature="e#1400#1596#0" expanded="false" />
+            <element signature="e#1602#2366#0" expanded="false" />
+            <element signature="e#5692#6264#0" expanded="false" />
+            <element signature="e#6270#6770#0" expanded="false" />
+            <element signature="e#6776#7591#0" expanded="false" />
           </folding>
         </state>
       </provider>
