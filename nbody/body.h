@@ -48,9 +48,9 @@ public:
 
     void update_based_on_force_dt(point force, double dt) {
         // F = ma  --> F/m = a
-        point accelleration = force / m_mass;
+        point acceleration = force / m_mass;
         m_last_position = m_position;
-        m_velocity += (accelleration * dt);
+        m_velocity += (acceleration * dt);
         m_position += (m_velocity * dt);
     }
 

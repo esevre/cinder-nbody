@@ -150,10 +150,10 @@ void many_bodies_test(std::vector<std::shared_ptr<body>> &bodies, int num_bodies
 
 }
 
-
+enum Rotation{ CLOCKWISE, COUNTERCLOCKWISE };
 void add_galaxy_to_body_list(std::vector<std::shared_ptr<body>> &bodies, point center,
-                             double min_radius=500, double max_radius=1000,
-                             int num_bodies = 500)
+                             double min_radius = 500, double max_radius = 1000,
+                             int num_bodies = 500, Rotation rotation = Rotation::CLOCKWISE)
 {
     double G = 6.674e-11;
     double pi = acos(-1);
@@ -171,7 +171,16 @@ void add_galaxy_to_body_list(std::vector<std::shared_ptr<body>> &bodies, point c
     for (int i = 0; i < num_bodies; ++i) {
         double radius = generate_random_in_range(min_radius, max_radius); // random radius between 5000 and 10000
         double theta = generate_random_in_range(0, 2*pi);  // random between 0 and 2*pi
-        double phi = theta + pi / 4;
+        double phi = theta; //+ pi / 4;
+
+        switch (rotation){
+            case Rotation::CLOCKWISE:
+                phi += pi/4.0;
+                break;
+            case Rotation::COUNTERCLOCKWISE:
+                phi -= pi/4.0;
+                break;
+        }
 
         double velocity = 0.75*std::sqrt(G*(big_mass + mass) / radius);
 
@@ -215,8 +224,8 @@ void create_two_galaxies(std::vector<std::shared_ptr<body>> &bodies, const regio
     bodies.clear(); // clear our list of bodies
 
     // try with one region for now
-    add_galaxy_to_body_list(bodies, upper_right_center, min_radius, max_radius, num_bodies/2);
-    add_galaxy_to_body_list(bodies, lower_left_center, min_radius, max_radius, num_bodies/2);
+    add_galaxy_to_body_list(bodies, upper_right_center, min_radius, max_radius, num_bodies/2, Rotation::CLOCKWISE);
+    add_galaxy_to_body_list(bodies, lower_left_center, min_radius, max_radius, num_bodies/2, Rotation::COUNTERCLOCKWISE);
 
 
 }

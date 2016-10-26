@@ -50,7 +50,7 @@ private:
     bool draw_bodies;
 
     std::vector<int> body_numbers { 10, 15, 25, 50, 100, 250, 500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000};
-    int body_number_index = 7;
+    int body_number_index = 6;
 
     std::vector<clock_t> times;
 
