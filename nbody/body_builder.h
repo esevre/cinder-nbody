@@ -112,11 +112,13 @@ void many_bodies_test(std::vector<std::shared_ptr<body>> &bodies, int num_bodies
     double G = 6.674e-11;
     double pi = acos(-1);
 
-    bodies.clear(); // empty the list
 
     double big_mass = 10000000;
     double mass = 10000;
 
+
+    // Clear the list before populating it
+    bodies.clear(); // empty the list
 
     // create and add central mass (black hole)
     std::shared_ptr<body> bdy = std::make_shared<body>(big_mass, point(0,0), point(0,0));
@@ -149,7 +151,10 @@ void many_bodies_test(std::vector<std::shared_ptr<body>> &bodies, int num_bodies
 }
 
 
-void add_galaxy_to_body_list(std::vector<std::shared_ptr<body>> &bodies, point center, double min_radius=5000, double max_radius=10000, int num_bodies = 500) {
+void add_galaxy_to_body_list(std::vector<std::shared_ptr<body>> &bodies, point center,
+                             double min_radius=500, double max_radius=1000,
+                             int num_bodies = 500)
+{
     double G = 6.674e-11;
     double pi = acos(-1);
 
@@ -187,9 +192,29 @@ void add_galaxy_to_body_list(std::vector<std::shared_ptr<body>> &bodies, point c
 
 }
 
+//
+//  Create a galaxy in the upper right, and lower left quadrants
+//
+void create_two_galaxies(std::vector<std::shared_ptr<body>> &bodies, const region &r, int num_bodies=500) {
 
-void create_two_galaxys(std::vector<std::shared_ptr<body>> &bodies) {
+//    point global_center = r.get_center();
+//    point upper_right_center = (global_center + r.get_max_corner()) / 2.0;
+//    point lower_left_center = (global_center - r.get_min_corner()) / 2.0;
+//
+//    double min_radius = r.get_center().x() / 8;
+//    double max_radius = r.get_center().x() / 4;
 
+    point upper_right_center(800, 800);
+    point lower_left_center(-800, -800);
+
+    double min_radius = 200;
+    double max_radius = 800;
+
+    bodies.clear(); // clear our list of bodies
+
+    // try with one region for now
+    add_galaxy_to_body_list(bodies, upper_right_center, min_radius, max_radius, num_bodies/2);
+    add_galaxy_to_body_list(bodies, lower_left_center, min_radius, max_radius, num_bodies/2);
 
 
 }

@@ -14,6 +14,9 @@
 ci::vec2 point_to_vec2(const point p) {
     return ci::vec2(p.x(), p.y());
 }
+point vec2_to_point(const ci::vec2 v2) {
+    return point(v2.x, v2.y);
+}
 
 //
 //  Scale point to fit on screen

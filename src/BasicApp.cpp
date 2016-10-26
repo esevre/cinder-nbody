@@ -202,7 +202,13 @@ void BasicApp::setup() {
 
     tree_region.set(-1e4, -1e4, 1e4, 1e4);
     draw_region.set( -1.5e3, -1.5e3, 1.5e3, 1.5e3);
-    many_bodies_test(bodies);
+
+    //many_bodies_test(bodies);
+    auto center = getWindowCenter();
+    add_galaxy_to_body_list(bodies, vec2_to_point(center));
+
+    //region galaxy_region(-1e2, -1e2, 1e2, 1e2);
+    create_two_galaxies(bodies, draw_region);
 
     go_go_go = false;
     draw_velocity = false;
@@ -214,6 +220,8 @@ void BasicApp::setup() {
     //
     double max_x_vel = 0, max_y_vel = 0;
 
+
+    // todo: remove test code below when un-needed
     for (auto &b : bodies) {
         auto velx = b->get_velocity().x();
         auto vely = b->get_velocity().y();
