@@ -12,11 +12,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d2426948-fc90-4c32-a365-329fc7c146a1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/Debug/BasicApp.app/Contents/MacOS/BasicApp" afterPath="$PROJECT_DIR$/build/Debug/BasicApp.app/Contents/MacOS/BasicApp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../nbody/bh_tree_node.h" afterPath="$PROJECT_DIR$/../../nbody/bh_tree_node.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../nbody/body_builder.h" afterPath="$PROJECT_DIR$/../../nbody/body_builder.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../src/BasicApp.cpp" afterPath="$PROJECT_DIR$/../../src/BasicApp.cpp" />
     </list>
     <ignored path="cmake.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -456,7 +452,7 @@
       <workItem from="1477390581863" duration="12270000" />
       <workItem from="1477422117905" duration="262000" />
       <workItem from="1477448777252" duration="17157000" />
-      <workItem from="1477470592160" duration="7803000" />
+      <workItem from="1477470592160" duration="7848000" />
     </task>
     <task id="LOCAL-00001" summary="Updated the many_body_test to take the number of bodies as an input.&#10;Also added functionality to use up/down arrow to increase decrease the number of particles.">
       <created>1477473479673</created>
@@ -479,11 +475,18 @@
       <option name="project" value="LOCAL" />
       <updated>1477476950646</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Working on improving display of multiple galaxies.">
+      <created>1477482300364</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1477482300364</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46049000" />
+    <option name="totallyTimeSpent" value="46094000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1" y="23" width="1280" height="773" extended-state="6" />
@@ -527,7 +530,8 @@
     <MESSAGE value="Updated the many_body_test to take the number of bodies as an input.&#10;Also added functionality to use up/down arrow to increase decrease the number of particles." />
     <MESSAGE value="added code to keep the visualization square regardless of window aspect ratio.&#10;Also added code to create galaxies. Still need to test the multi-galaxy code is working&#10;" />
     <MESSAGE value="Basic multibody galaxy code added and working" />
-    <option name="LAST_COMMIT_MESSAGE" value="Basic multibody galaxy code added and working" />
+    <MESSAGE value="Working on improving display of multiple galaxies." />
+    <option name="LAST_COMMIT_MESSAGE" value="Working on improving display of multiple galaxies." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
