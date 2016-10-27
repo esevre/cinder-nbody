@@ -12,7 +12,7 @@
 #include "body_builder.h"
 #include "nbody_cinder.h"
 
-
+#include <sstream>
 
 // extra cinder includes
 
@@ -41,7 +41,10 @@ public:
 
     virtual void update() override;
 
-    gl::Texture2dRef mTexture;
+    //
+    //  Variables for on screen text
+    //
+    gl::Texture2dRef mTexture; // Texture reference (for the text)
 
 
 private:
@@ -212,16 +215,24 @@ void BasicApp::draw()
 	gl::end();
 
 
-    //
-    //  Add some text to the screen
-    //
-    TextLayout layout;
-    layout.clear(ColorA(0.1f, 0.1f, 0.1f, 0.7f));
-    layout.setColor(Color(0.9f, 0.9f, 0.9f));
-    layout.setFont( Font("Arial Black", 30));
-    layout.addCenteredLine("some text");
-    //Surface8u rendered = layout.render( true, PREMULT);
 
+    //
+    //  Display number of bodies on screen
+    //
+    std::stringstream display_text;
+    display_text << "Number of Bodies: " << bodies.size();
+
+
+    TextLayout layout;                               // controls the layout
+
+    layout.clear(ColorA(0.1f, 0.1f, 0.1f, 0.7f));
+    layout.setColor(Color(0.1f, 0.9f, 0.9f));
+    layout.setFont( Font("Arial Black", 30));
+    layout.addCenteredLine(display_text.str());
+
+    Surface8u rendered = layout.render( true, true);
+    mTexture = gl::Texture2d::create( rendered );
+    gl::draw(mTexture, vec2(10,10));
 
 
 }
@@ -259,6 +270,9 @@ void BasicApp::setup() {
         max_x_vel = velx > max_x_vel ? velx : max_x_vel;
         max_y_vel = vely > max_y_vel ? vely : max_y_vel;
     }
+
+
+
 
     std::cout << "max x vel: " << max_x_vel << ", and max_y_vel: " << max_y_vel << std::endl;
     std::cout << "we are working with " << bodies.size() << " bodies" << std::endl;
