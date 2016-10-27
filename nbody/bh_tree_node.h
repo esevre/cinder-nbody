@@ -264,7 +264,8 @@ public:
 
         // if points are too close, they are considered to be the same point
         // later add code to handle collision physics
-        double epsilon = 1.0e1;
+        // todo: add colision mechanics here
+        double epsilon = 2.0e1;
         if (d < epsilon) {
             return force;
         }

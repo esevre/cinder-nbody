@@ -1,6 +1,11 @@
 #include "cinder/app/App.h"
 #include "cinder/app/RendererGl.h"
 #include "cinder/gl/gl.h"
+#include "cinder/Text.h"
+#include "cinder/gl/Texture.h"
+#include "cinder/Utilities.h"
+#include "cinder/ImageIo.h"
+
 
 // nbody includes
 #include "bh_tree.h"
@@ -10,8 +15,6 @@
 
 
 // extra cinder includes
-//#include "cinder/ImageIo.h"
-//#include "cinder/gl/Texture.h"
 
 
 //#include <ctime>
@@ -37,7 +40,9 @@ public:
     virtual void setup() override;
 
     virtual void update() override;
-    //gl::Texture my_image;
+
+    gl::Texture2dRef mTexture;
+
 
 private:
     // This will maintain a list of points which we will draw line segments between
@@ -57,6 +62,9 @@ private:
     // todo: add the region to the Basic APP
     region tree_region;
     region draw_region;
+
+    void run_multigalaxy();
+    void run_single_galaxy();
 
 };
 
@@ -116,6 +124,8 @@ void BasicApp::keyDown( KeyEvent event )
         }
         many_bodies_test(bodies, body_numbers[body_number_index]);
 
+    } else if (event.getCode() == 'm') {
+        run_multigalaxy();
     }
 
 }
@@ -202,6 +212,18 @@ void BasicApp::draw()
 	gl::end();
 
 
+    //
+    //  Add some text to the screen
+    //
+    TextLayout layout;
+    layout.clear(ColorA(0.1f, 0.1f, 0.1f, 0.7f));
+    layout.setColor(Color(0.9f, 0.9f, 0.9f));
+    layout.setFont( Font("Arial Black", 30));
+    layout.addCenteredLine("some text");
+    //Surface8u rendered = layout.render( true, PREMULT);
+
+
+
 }
 
 
@@ -213,8 +235,8 @@ void BasicApp::setup() {
     draw_region.set( -2.5e3, -2.5e3, 2.5e3, 2.5e3);
 
     //many_bodies_test(bodies);
-    auto center = getWindowCenter();
-    add_galaxy_to_body_list(bodies, vec2_to_point(center));
+    //auto center = getWindowCenter();
+    //add_galaxy_to_body_list(bodies, vec2_to_point(center));
 
     //region galaxy_region(-1e2, -1e2, 1e2, 1e2);
     create_two_galaxies(bodies, draw_region);
@@ -267,6 +289,17 @@ void BasicApp::update() {
 
 }
 
+
+void BasicApp::run_multigalaxy() {
+    tree_region.set(-1e4, -1e4, 1e4, 1e4);
+    draw_region.set( -2.5e3, -2.5e3, 2.5e3, 2.5e3);
+
+    auto center = getWindowCenter();
+    bodies.clear();
+    create_two_galaxies(bodies, draw_region);
+
+    create_two_galaxies(bodies, draw_region);
+}
 
 // This line tells Cinder to actually create and run the application.
 
