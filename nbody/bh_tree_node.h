@@ -144,7 +144,6 @@ public:
         //  If LEAF
         //
         if (is_leaf()) {
-            // todo: update this code to change the my_body and reset it since it is being moved to a subnode
             Quadrant leaf_body_quadrant = get_quadrant(my_body->get_position());
             Quadrant new_body_quadrant = get_quadrant(b->get_position());
 

@@ -86,6 +86,12 @@ public:
         return !global_region.is_in(b->get_position());
     }
 
+    bool is_outside(const point pos) const {
+        return !global_region.is_in(pos);
+    }
+
+    region get_global_region() const { return global_region; }
+
     point compute_force(std::shared_ptr<body> &b) {
         if (root == nullptr) {
             // no bodies for force computation

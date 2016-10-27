@@ -39,8 +39,8 @@ ci::ivec2 scale_point_to_screen(const point &p, const region &r, const ci::ivec2
 }
 
 
-
-void pluck_outside_bodies(std::vector<std::shared_ptr<body>> &bodies, const bh_tree &tree) {
+// todo: figure out how to remove bodies, following code isn't working
+void pluck_outside_bodies(std::vector<std::shared_ptr<body>> &bodies, const region &r) {
     // use remove if to remove all elements outside the tree
     auto ptr_begin = bodies.begin();
     auto ptr_end = bodies.end();
@@ -49,8 +49,8 @@ void pluck_outside_bodies(std::vector<std::shared_ptr<body>> &bodies, const bh_t
 
     int index = 0;
     for (auto ptr = ptr_begin; ptr != ptr_end; ++ptr) {
-        std::shared_ptr<body> b = *ptr;
-        if (tree.is_outside( b )) {
+        point pos = ptr->get()->get_position();
+        if (!r.is_in(pos)) {
             std::cout << "something needs to be removed" << std::endl;
             erase_list.push_back(index);
         }
@@ -68,7 +68,8 @@ void pluck_outside_bodies(std::vector<std::shared_ptr<body>> &bodies, const bh_t
 std::vector<point> compute_forces(std::vector<std::shared_ptr<body>> &bodies, const region r){
     bh_tree tree(r);
 
-    pluck_outside_bodies(bodies, tree);
+    // todo: uncomment code below once it is fixed
+    //pluck_outside_bodies(bodies, tree.get_global_region());
 
     for (int i = 0; i < bodies.size(); ++i) {
         tree.insert_body(bodies[i]);

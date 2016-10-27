@@ -1,3 +1,10 @@
+//
+// Created by Erik Sevre on 10/25/16.
+//
+// todo: write summary of app
+// todo: comment the program to make everything clear
+//
+
 #include "cinder/app/App.h"
 #include "cinder/app/RendererGl.h"
 #include "cinder/gl/gl.h"
@@ -12,9 +19,8 @@
 #include "body_builder.h"
 #include "nbody_cinder.h"
 
+// used for writing number of bodies to screen
 #include <sstream>
-
-// extra cinder includes
 
 
 //#include <ctime>
@@ -22,24 +28,38 @@
 
 using namespace ci;
 using namespace ci::app;
+
 //
-// We'll create a new Cinder Application by deriving from the App class.
+// Create a "Basic App" from the default "App" class in cinder
+//
 class BasicApp : public App {
 public:
+    //  ** mouseDrag is Left over from default code I started with
+    //  ** I want to use this to add more bodies in the future, for a program I want to play with
+    //  **
     // Cinder will call 'mouseDrag' when the user moves the mouse while holding one of its buttons.
     // See also: mouseMove, mouseDown, mouseUp and mouseWheel.
+    //
     void mouseDrag( MouseEvent event ) override;
 
+    //  ** keyDown() was in the default code, but I adapted it to control what is being visualized
+    //
     // Cinder will call 'keyDown' when the user presses a key on the keyboard.
     // See also: keyUp.
     void keyDown( KeyEvent event ) override;
 
-    // Cinder will call 'draw' each time the contents of the window need to be redrawn.
-    void draw() override;
 
+    //
+    //  Core of an app: setup - update - draw
+    //
+    // setup()  : is called once when the app starts
+    //
+    // update() : called before each frame is drawn
+    // draw()   : called to draw each frame repeatedly
+    //
     virtual void setup() override;
-
     virtual void update() override;
+    void draw() override;
 
     //
     //  Variables for on screen text
