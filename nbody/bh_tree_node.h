@@ -5,11 +5,15 @@
 #ifndef TREE_CODE_BH_TREE_NODE_H
 #define TREE_CODE_BH_TREE_NODE_H
 
+//
+//  C++ STL Includes
+//
 #include <queue>
 #include <stack>
 #include <ostream>
 #include <cmath>
 
+//  Erik's Custom includes
 //
 //  To know what region this cell occupies
 //
@@ -29,22 +33,22 @@ enum NodeState {
 //
 //  Barnes Hut Tree Node Class
 //
-//  Each node has it's own data
-//    - This data is representative of the 4 children nodes
+//  Each node has a body object containing information necessary for the physics
+//    - my_body contains the physical properties
 //
 //  Then it has 4 children
 //    - Northwest
 //    - Northeast
 //    - Southeast
 //    - Southwest
+//    - OUTSIDE (not in any of the 4 nodes above)
 //
+//  NodeState is an enumeration used to determine if the body is a Leaf or Conglomerate of subnodes
+//    - state : NodeState value to hold node type
 //
-//
-
 
 class bh_tree_node {
 protected:
-    //double mass;
     std::shared_ptr<body> my_body;
     std::shared_ptr<bh_tree_node> nw, ne, se, sw, outside;
 
@@ -52,7 +56,10 @@ protected:
     NodeState state;
 
 public:
-    // create populated node
+    // Object constructor
+    // Required input:
+    //    region : r        -  region that this node represents
+    //    body   : my_body  -  body that represents this region
     bh_tree_node(region r,
                  std::shared_ptr<body> my_body,
                  std::shared_ptr<bh_tree_node> nw = nullptr,
@@ -61,6 +68,9 @@ public:
                  std::shared_ptr<bh_tree_node> sw = nullptr)
             : my_region(r), my_body(my_body), nw(nw), ne(ne), se(se), sw(sw) { state = NodeState::LEAF; outside = nullptr; }
 
+    // Object destructor
+    // When a node is destroyed, we will clear out subnodes, and destroy the node
+    // When we destroy a node, set each node to nullptr
     virtual ~bh_tree_node() {
         this->clear();
         my_body = nullptr;
@@ -72,6 +82,7 @@ public:
     }
 
     void clear() {
+        // if the node is a leaf, clear out the pointers
         if (state == NodeState::LEAF) {
             my_body = nullptr;
             nw = nullptr;

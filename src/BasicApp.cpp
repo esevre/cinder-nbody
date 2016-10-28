@@ -53,7 +53,6 @@ public:
     //  Core of an app: setup - update - draw
     //
     // setup()  : is called once when the app starts
-    //
     // update() : called before each frame is drawn
     // draw()   : called to draw each frame repeatedly
     //
@@ -173,7 +172,7 @@ void BasicApp::draw()
     gl::color( 0.0f, 0.0f, 1.0f);
     if (draw_bodies) {
         for (auto &e : bodies) {
-            gl::color( 0.0f, 0.0f, 1.0f);
+            gl::color( 0.0f, 1.0f, 1.0f);
             if (e->get_mass() > 10000) {
                 gl::color( 1.0f, 0.0f, 0.0f);
             }
