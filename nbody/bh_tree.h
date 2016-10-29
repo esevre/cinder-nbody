@@ -79,12 +79,11 @@ public:
             }
         }
         prev->add_node(b);
-        root->update_body();
+        // originally I would update all the bodies each step,
+        // this increased the number of computations slowing it down.
+        //root->update_body();
     }
-
-    bool is_outside(const std::shared_ptr<body> &b) const {
-        return !global_region.is_in(b->get_position());
-    }
+    void update() { root->update_body(); }
 
     bool is_outside(const point pos) const {
         return !global_region.is_in(pos);

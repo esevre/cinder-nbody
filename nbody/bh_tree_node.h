@@ -81,6 +81,9 @@ public:
         outside = nullptr;
     }
 
+    //
+    //  Deletes all data in the node, and sub-nodes
+    //
     void clear() {
         // if the node is a leaf, clear out the pointers
         if (state == NodeState::LEAF) {
@@ -92,6 +95,8 @@ public:
             outside = nullptr;
             return;
         }
+        // For Conglomerate nodes
+        // If the quadrant is not null, then clear it
         if (nw != nullptr) {
             nw->clear();
             nw = nullptr;
@@ -117,7 +122,10 @@ public:
     }
 
     //
-    //  Currently a point object is destroyed here, I want to prevent that ...
+    //  Subregions are created and used to create subnodes based on the quadrant
+    //
+    //  There are two versions of the fucntion exist so it works with point or body
+    // objects.
     //
     region get_subregion_for_point(const point &p) {
         Quadrant q = my_region.get_quadrant(p);
@@ -128,47 +136,80 @@ public:
         return r;
     }
 
+    // Getters: for retreiving pointers to sub-nodes;
     std::shared_ptr<bh_tree_node> get_nw() { return nw; }
     std::shared_ptr<bh_tree_node> get_ne() { return ne; }
     std::shared_ptr<bh_tree_node> get_se() { return se; }
     std::shared_ptr<bh_tree_node> get_sw() { return sw; }
     std::shared_ptr<bh_tree_node> get_outside() { return outside; }
 
-    // Delete these?
+    // Setters for setting subnodes, these aren't used at this time
     //    void set_nw(std::shared_ptr<bh_tree_node> node) { nw = node; }
     //    void set_ne(std::shared_ptr<bh_tree_node> node) { ne = node; }
     //    void set_se(std::shared_ptr<bh_tree_node> node) { se = node; }
     //    void set_sw(std::shared_ptr<bh_tree_node> node) { sw = node; }
 
+    // getter for retreiving the region
     region get_region() const { return my_region; }
 
+    // getter to get the quadrant for a point
     Quadrant get_quadrant(const point &p) const { return my_region.get_quadrant(p); };
-    //Quadrant get_quadrant(const body &b) const { return my_region.get_quadrant(b.get_position()); }
 
+    // Used to determine if the node is a leaf or conglomerate
+    // not used at this time
+    //
+    //  get_state() will get the state for this node
+    //  is_leaf() is a quick boolian check to see if the node is a leaf
     NodeState get_state() const { return bh_tree_node::state; }
-
     bool is_leaf() { return this->state == NodeState::LEAF; }
 
 
+    // The heart of the program  to add a node
     void add_node(std::shared_ptr<body> &b){
         //
         //  If LEAF
+        //
+        //  In the case of adding to a leaf, we need to move the body to a subnode
+        // before we add the new node.
+        //  There are two cases,
+        //    - current body and the new body are in the same quadrant
+        //    - current body and the new body are in different quadrants
         //
         if (is_leaf()) {
             Quadrant leaf_body_quadrant = get_quadrant(my_body->get_position());
             Quadrant new_body_quadrant = get_quadrant(b->get_position());
 
             //
-            // if the current node and is in the same quadrant as the new body
+            // Add ing a node follows one of two paths, depending on if the two nodes are in
+            //  the same quadrant or not. If the two are in the same quadrant, the insertion
+            //  method is recursive, and will terminate when they are in separate quadrants.
+            //    - create a region
+            //    - use that region to create a sub-node with our current body
+            //    - set our current sub-node to the appropriate quadrant
+            //   -*- If the quadrant is the same
+            //         use a recursive call to try inserting the new body
+            //         recursion means this will keep dividing until the nodes
+            //         are in different quadrants.
+            //   -*- If the quadrant is the different
+            //         set the new node in its quadrant.
+            //    - reset the current body
+            //    - set the state of this node to CONGLOMERATE
+            //
+
+            //
+            //  If the current node is in teh same quadrant as the new body
             //
             if (leaf_body_quadrant == new_body_quadrant) {
                 region r_shared = get_subregion_for_body(my_body);
                 std::shared_ptr<bh_tree_node> subnode = std::make_shared<bh_tree_node>(r_shared, my_body);
                 set_node_in_quadrant(subnode, leaf_body_quadrant);
-                subnode->add_node(b);
+                subnode->add_node(b);    // recursive call
                 my_body = std::make_shared<body>(0, point(0,0), point(0,0)); // reset it
                 this->state = NodeState::CONGLOMERATE;
             } else {
+                //
+                //  If the current node is in a different quadrant than the new body
+                //
                 region r_old = get_subregion_for_body(my_body);
                 region r_new = get_subregion_for_body(b);
                 std::shared_ptr<bh_tree_node> node_for_old = std::make_shared<bh_tree_node>(r_old, my_body);
@@ -178,7 +219,9 @@ public:
                 my_body = std::make_shared<body>(0, point(0,0), point(0,0)); // reset it
                 this->state = NodeState::CONGLOMERATE;
             }
-
+        //
+        //  If Conglomerate node, we can simply set the body to the correct quadrant
+        //
         } else {
             region r = this->get_subregion_for_body(b);
             std::shared_ptr<bh_tree_node> new_node = std::make_shared<bh_tree_node>(r, b);
@@ -187,6 +230,9 @@ public:
         }
     }
 
+    //
+    //  Place node in the selected quadrant
+    //
     void set_node_in_quadrant(const std::shared_ptr<bh_tree_node> &new_node, const Quadrant &q) {
         switch (q) {
             case NW:
@@ -209,53 +255,11 @@ public:
     }
 
     double get_mass() {
-        if (state == NodeState::LEAF) {
-            return my_body->get_mass();
-        }
-
-        double mass = 0.0;
-        if (nw != nullptr) {
-            mass += nw->my_body->get_mass();
-        }
-        if (ne != nullptr) {
-            mass += ne->my_body->get_mass();
-        }
-        if (sw != nullptr) {
-            mass += sw->my_body->get_mass();
-        }
-        if (se != nullptr) {
-            mass += se->my_body->get_mass();
-        }
-        return mass;
+        return my_body->get_mass();
     }
 
     point get_position() {
-        if (state == NodeState::LEAF) {
-            return my_body->get_position();
-        }
-        point position(0, 0);
-        if (nw != nullptr) {
-            point p = nw->my_body->get_position();
-            p *= nw->get_mass();
-            position += p;
-        }
-        if (ne != nullptr) {
-            point p = ne->my_body->get_position();
-            p *= ne->get_mass();
-            position += p;
-        }
-        if (sw != nullptr) {
-            point p = sw->my_body->get_position();
-            p *= sw->get_mass();
-            position += p;
-        }
-        if (se != nullptr) {
-            point p = se->my_body->get_position();
-            p *= se->get_mass();
-            position += p;
-        }
-        position /= this->get_mass();
-        return position;
+        return my_body->get_position();
     }
 
     // compute s/d < 0.5

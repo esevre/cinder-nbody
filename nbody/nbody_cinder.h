@@ -38,6 +38,21 @@ ci::ivec2 scale_point_to_screen(const point &p, const region &r, const ci::ivec2
     return pt;
 }
 
+point scale_vec2_to_point(const ci::vec2 &v, const region &r, const ci::vec2 screen) {
+    double x_offset = r.get_min_corner().x();
+    double y_offset = r.get_min_corner().y();
+
+    double x_scale = screen.x / r.width();
+    double y_scale = screen.y / r.height();
+
+    double scale = x_scale > y_scale ? y_scale : x_scale;
+
+    double ptx = v.x / scale + x_offset;
+    double pty = v.y / scale + y_offset;
+
+    point pt(ptx, pty);
+    return pt;
+}
 
 // todo: figure out how to remove bodies, following code isn't working
 void pluck_outside_bodies(std::vector<std::shared_ptr<body>> &bodies, const region &r) {
@@ -71,9 +86,11 @@ std::vector<point> compute_forces(std::vector<std::shared_ptr<body>> &bodies, co
     // todo: uncomment code below once it is fixed
     //pluck_outside_bodies(bodies, tree.get_global_region());
 
+
     for (int i = 0; i < bodies.size(); ++i) {
         tree.insert_body(bodies[i]);
     }
+    tree.update();
 
     std::vector<point> forces;
     for (auto &b : bodies) {
@@ -95,6 +112,14 @@ void update_bodies_with_forces(std::vector<std::shared_ptr<body>> &bodies, const
 }
 
 
+// todo: modify the function below to add bodies that are drawn on by user
+void add_body_to_bodies(std::vector<std::shared_ptr<body>> &bodies, ci::vec2 screen, ci::vec2 pos, region disp_region) {
+    point pt = scale_vec2_to_point(pos, disp_region, screen);
+    double mass = 5000;
+    point vel(0,0);
+    std::shared_ptr<body> body_ptr = std::make_shared<body>(mass, pt, vel);
+    bodies.push_back(body_ptr);
+}
 
 
 

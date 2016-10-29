@@ -76,7 +76,7 @@ private:
     bool draw_as_line;
     bool draw_bodies;
 
-    std::vector<int> body_numbers { 10, 15, 25, 50, 100, 250, 500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000};
+    std::vector<int> body_numbers { 10, 15, 25, 50, 100, 250, 500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 6000, 7000, 8000, 9000, 10000};
     int body_number_index = 6;
 
     std::vector<clock_t> times;
@@ -98,7 +98,8 @@ void prepareSettings( BasicApp::Settings* settings )
 void BasicApp::mouseDrag( MouseEvent event )
 {
 	// Store the current mouse position in the list.
-	mPoints.push_back( event.getPos() );
+	// mPoints.push_back( event.getPos() );
+    add_body_to_bodies(bodies, getWindowSize(), event.getPos(), draw_region);
 }
 
 void BasicApp::keyDown( KeyEvent event )
@@ -165,16 +166,13 @@ void BasicApp::draw()
 	//gl::clear( Color(gray, gray, gray), true);
     gl::clear();
 
-    // my_image = gl::Texture( loadImage( loadResource(filename)));
-    // gl::draw( my_image, getWindowBounds());
-
 
     gl::color( 0.0f, 0.0f, 1.0f);
     if (draw_bodies) {
         for (auto &e : bodies) {
-            gl::color( 0.0f, 1.0f, 1.0f);
+            gl::color( 0.0f, 0.2f, 1.0f);
             if (e->get_mass() > 10000) {
-                gl::color( 1.0f, 0.0f, 0.0f);
+                gl::color( 1.0f, 0.1f, 0.1f);
             }
             auto pt = scale_point_to_screen(e->get_position(), draw_region, getWindowSize());
             auto mass = std::log(std::sqrt(e->get_mass()))/std::log(10);
@@ -227,11 +225,12 @@ void BasicApp::draw()
 	// using a few convenience functions: 'begin' will tell OpenGL to
 	// start constructing a line strip, 'vertex' will add a point to the
 	// line strip and 'end' will execute the draw calls on the GPU.
-	gl::begin( GL_LINE_STRIP );
-	for( const vec2 &point : mPoints ) {
-		gl::vertex( point );
-	}
-	gl::end();
+
+//    gl::begin( GL_LINE_STRIP );
+//	for( const vec2 &point : mPoints ) {
+//		gl::vertex( point );
+//	}
+//	gl::end();
 
 
 
@@ -289,7 +288,6 @@ void BasicApp::setup() {
         max_x_vel = velx > max_x_vel ? velx : max_x_vel;
         max_y_vel = vely > max_y_vel ? vely : max_y_vel;
     }
-
 
 
 
