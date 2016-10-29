@@ -10,7 +10,8 @@
 #include "bh_tree.h"
 #include "cinder/gl/gl.h"
 
-// Add this line of code for cinder support
+
+// convert between cinder and my custom point types
 ci::vec2 point_to_vec2(const point p) {
     return ci::vec2(p.x(), p.y());
 }
@@ -19,9 +20,10 @@ point vec2_to_point(const ci::vec2 v2) {
 }
 
 //
-//  Scale point to fit on screen
+//  Scale functions
 //
-// todo: update this so that it scales without distortion
+//   Used to convert between point on screen, and point in computational space
+//
 ci::ivec2 scale_point_to_screen(const point &p, const region &r, const ci::ivec2 screen) {
     double x_offset = r.get_min_corner().x();
     double y_offset = r.get_min_corner().y();
@@ -37,7 +39,6 @@ ci::ivec2 scale_point_to_screen(const point &p, const region &r, const ci::ivec2
     ci::ivec2 pt((int)x, (int)y);
     return pt;
 }
-
 point scale_vec2_to_point(const ci::vec2 &v, const region &r, const ci::vec2 screen) {
     double x_offset = r.get_min_corner().x();
     double y_offset = r.get_min_corner().y();
@@ -53,6 +54,7 @@ point scale_vec2_to_point(const ci::vec2 &v, const region &r, const ci::vec2 scr
     point pt(ptx, pty);
     return pt;
 }
+
 
 // todo: figure out how to remove bodies, following code isn't working
 void pluck_outside_bodies(std::vector<std::shared_ptr<body>> &bodies, const region &r) {

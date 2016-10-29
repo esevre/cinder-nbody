@@ -12,12 +12,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d2426948-fc90-4c32-a365-329fc7c146a1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/Debug/BasicApp.app/Contents/MacOS/BasicApp" afterPath="$PROJECT_DIR$/build/Debug/BasicApp.app/Contents/MacOS/BasicApp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../nbody/bh_tree.h" afterPath="$PROJECT_DIR$/../../nbody/bh_tree.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../nbody/bh_tree_node.h" afterPath="$PROJECT_DIR$/../../nbody/bh_tree_node.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../nbody/nbody_cinder.h" afterPath="$PROJECT_DIR$/../../nbody/nbody_cinder.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../src/BasicApp.cpp" afterPath="$PROJECT_DIR$/../../src/BasicApp.cpp" />
     </list>
     <ignored path="cmake.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -47,11 +43,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BasicApp.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BasicApp.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../../src/BasicApp.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="90">
-              <caret line="167" column="0" selection-start-line="167" selection-start-column="0" selection-end-line="167" selection-end-column="0" />
+              <caret line="162" column="40" selection-start-line="162" selection-start-column="40" selection-end-line="162" selection-end-column="40" />
               <folding>
                 <element signature="e#132#159#0" expanded="true" />
                 <element signature="e#355#375#0" expanded="true" />
@@ -61,18 +57,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="nbody_cinder.h" pinned="false" current-in-tab="false">
+      <file leaf-file-name="nbody_cinder.h" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../../nbody/nbody_cinder.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="88" column="0" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
+            <state relative-caret-position="227">
+              <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
               <folding>
                 <element signature="e#110#127#0" expanded="true" />
-                <element signature="e#177#297#0" expanded="false" />
-                <element signature="e#298#370#0" expanded="false" />
-                <element signature="e#372#933#0" expanded="false" />
-                <element signature="e#935#1385#0" expanded="false" />
-                <element signature="e#2186#2691#0" expanded="false" />
+                <element signature="e#178#306#0" expanded="false" />
+                <element signature="e#307#379#0" expanded="false" />
+                <element signature="e#381#953#0" expanded="false" />
+                <element signature="e#954#1404#0" expanded="false" />
+                <element signature="e#954#1404#0" expanded="false" />
+                <element signature="e#2206#2711#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -174,8 +171,8 @@
         <option value="$PROJECT_DIR$/../../nbody/body.h" />
         <option value="$PROJECT_DIR$/../../nbody/bh_tree_node.h" />
         <option value="$PROJECT_DIR$/../../nbody/bh_tree.h" />
-        <option value="$PROJECT_DIR$/../../nbody/nbody_cinder.h" />
         <option value="$PROJECT_DIR$/../../src/BasicApp.cpp" />
+        <option value="$PROJECT_DIR$/../../nbody/nbody_cinder.h" />
       </list>
     </option>
   </component>
@@ -428,7 +425,7 @@
       <workItem from="1477422117905" duration="262000" />
       <workItem from="1477448777252" duration="17157000" />
       <workItem from="1477470592160" duration="21177000" />
-      <workItem from="1477625088230" duration="11563000" />
+      <workItem from="1477625088230" duration="11937000" />
     </task>
     <task id="LOCAL-00001" summary="Updated the many_body_test to take the number of bodies as an input.&#10;Also added functionality to use up/down arrow to increase decrease the number of particles.">
       <created>1477473479673</created>
@@ -500,11 +497,18 @@
       <option name="project" value="LOCAL" />
       <updated>1477629865829</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Increased performance by removing update bodies after adding each node.&#10;Also added code to add bodies by draggin the mouse, however this is very buggy and causes crashes most of the time.">
+      <created>1477755715504</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1477755715504</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70986000" />
+    <option name="totallyTimeSpent" value="71360000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -562,7 +566,8 @@
     <MESSAGE value="Added code to switch between simulations by pressing keys." />
     <MESSAGE value="Added text to display number of bodies on screen." />
     <MESSAGE value="incremental update in documentation and comments" />
-    <option name="LAST_COMMIT_MESSAGE" value="incremental update in documentation and comments" />
+    <MESSAGE value="Increased performance by removing update bodies after adding each node.&#10;Also added code to add bodies by draggin the mouse, however this is very buggy and causes crashes most of the time." />
+    <option name="LAST_COMMIT_MESSAGE" value="Increased performance by removing update bodies after adding each node.&#10;Also added code to add bodies by draggin the mouse, however this is very buggy and causes crashes most of the time." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -601,11 +606,12 @@
           <caret line="3" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding>
             <element signature="e#110#127#0" expanded="true" />
-            <element signature="e#177#297#0" expanded="false" />
-            <element signature="e#298#370#0" expanded="false" />
-            <element signature="e#372#933#0" expanded="false" />
-            <element signature="e#935#1385#0" expanded="false" />
-            <element signature="e#2186#2691#0" expanded="false" />
+            <element signature="e#178#306#0" expanded="false" />
+            <element signature="e#307#379#0" expanded="false" />
+            <element signature="e#381#953#0" expanded="false" />
+            <element signature="e#954#1404#0" expanded="false" />
+            <element signature="e#954#1404#0" expanded="false" />
+            <element signature="e#2206#2711#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -702,11 +708,12 @@
           <caret line="36" column="60" selection-start-line="36" selection-start-column="60" selection-end-line="36" selection-end-column="60" />
           <folding>
             <element signature="e#110#127#0" expanded="true" />
-            <element signature="e#177#297#0" expanded="false" />
-            <element signature="e#298#370#0" expanded="false" />
-            <element signature="e#372#933#0" expanded="false" />
-            <element signature="e#935#1385#0" expanded="false" />
-            <element signature="e#2186#2691#0" expanded="false" />
+            <element signature="e#178#306#0" expanded="false" />
+            <element signature="e#307#379#0" expanded="false" />
+            <element signature="e#381#953#0" expanded="false" />
+            <element signature="e#954#1404#0" expanded="false" />
+            <element signature="e#954#1404#0" expanded="false" />
+            <element signature="e#2206#2711#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -851,11 +858,12 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#110#127#0" expanded="true" />
-            <element signature="e#177#297#0" expanded="false" />
-            <element signature="e#298#370#0" expanded="false" />
-            <element signature="e#372#933#0" expanded="false" />
-            <element signature="e#935#1385#0" expanded="false" />
-            <element signature="e#2186#2691#0" expanded="false" />
+            <element signature="e#178#306#0" expanded="false" />
+            <element signature="e#307#379#0" expanded="false" />
+            <element signature="e#381#953#0" expanded="false" />
+            <element signature="e#954#1404#0" expanded="false" />
+            <element signature="e#954#1404#0" expanded="false" />
+            <element signature="e#2206#2711#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1055,29 +1063,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../nbody/nbody_cinder.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="88" column="0" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
-          <folding>
-            <element signature="e#110#127#0" expanded="true" />
-            <element signature="e#177#297#0" expanded="false" />
-            <element signature="e#298#370#0" expanded="false" />
-            <element signature="e#372#933#0" expanded="false" />
-            <element signature="e#935#1385#0" expanded="false" />
-            <element signature="e#2186#2691#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../src/BasicApp.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
-          <caret line="167" column="0" selection-start-line="167" selection-start-column="0" selection-end-line="167" selection-end-column="0" />
+          <caret line="162" column="40" selection-start-line="162" selection-start-column="40" selection-end-line="162" selection-end-column="40" />
           <folding>
             <element signature="e#132#159#0" expanded="true" />
             <element signature="e#355#375#0" expanded="true" />
             <element signature="e#8790#9368#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../nbody/nbody_cinder.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+          <folding>
+            <element signature="e#110#127#0" expanded="true" />
+            <element signature="e#178#306#0" expanded="false" />
+            <element signature="e#307#379#0" expanded="false" />
+            <element signature="e#381#953#0" expanded="false" />
+            <element signature="e#954#1404#0" expanded="false" />
+            <element signature="e#954#1404#0" expanded="false" />
+            <element signature="e#2206#2711#0" expanded="false" />
           </folding>
         </state>
       </provider>
