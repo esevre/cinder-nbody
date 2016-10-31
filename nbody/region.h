@@ -25,6 +25,7 @@ public:
     region() : min_corner(point(0,0)), max_corner(point(0,0)), center(point(0,0)) { }
     region(const point &min_corner, const point &max_corner) : min_corner(min_corner), max_corner(max_corner)
     {
+
         center = min_corner + (max_corner - min_corner) / 2.0;
     }
     region(double xmin, double ymin, double xmax, double ymax) : min_corner(point(xmin,ymin)), max_corner(point(xmax, ymax))
@@ -69,8 +70,8 @@ public:
     //  Check if a point is in our region (boundaries are included in the region)
     //
     bool is_in(point p) const {
-        bool x_in_range = min_corner.x() <= p.x() and p.x() <= max_corner.x();
-        bool y_in_range = min_corner.y() <= p.y() and p.y() <= max_corner.y();
+        bool x_in_range = min_corner.x <= p.x and p.x <= max_corner.x;
+        bool y_in_range = min_corner.y <= p.y and p.y <= max_corner.y;
         return x_in_range and y_in_range;
     }
 
@@ -79,26 +80,26 @@ public:
     //
     bool is_nw(const point &p) const {
         if (!is_in(p)) return false; // if p is outside the cell, it is not in the quadrant
-        bool north = p.y() >= center.y();
-        bool west = p.x() <= center.x();
+        bool north = p.y >= center.y;
+        bool west = p.x <= center.x;
         return north and west;
     }
     bool is_ne(const point &p) const {
         if (!is_in(p)) return false; // if p is outside the cell, it is not in the quadrant
-        bool north = p.y() >= center.y();
-        bool east = p.x() >= center.x();
+        bool north = p.y >= center.y;
+        bool east = p.x >= center.x;
         return north and east;
     }
     bool is_sw(const point &p) const {
         if (!is_in(p)) return false; // if p is outside the cell, it is not in the quadrant
-        bool south = p.y() <= center.y();
-        bool west = p.x() <= center.x();
+        bool south = p.y <= center.y;
+        bool west = p.x <= center.x;
         return south and west;
     }
     bool is_se(const point &p) const {
         if (!is_in(p)) return false; // if p is outside the cell, it is not in the quadrant
-        bool south = p.y() <= center.y();
-        bool east = p.x() >= center.x();
+        bool south = p.y <= center.y;
+        bool east = p.x >= center.x;
         return south and east;
     }
 
@@ -123,8 +124,8 @@ public:
     //
     //  For our nbody, we will compute the width and height of our regions
     //
-    double width() const { return max_corner.x() - min_corner.x(); }
-    double height() const { return max_corner.y() - min_corner.y(); }
+    double width() const { return max_corner.x - min_corner.x; }
+    double height() const { return max_corner.y - min_corner.y; }
 
     //
     //  create a subregion
@@ -135,8 +136,8 @@ public:
     // creating a pointer r and returning by reference saves an object destruction
     region &create_subregion(Quadrant q) const {
         if (q == Quadrant::NW) {
-            point new_min(min_corner.x(), center.y());
-            point new_max(center.x(), max_corner.y());
+            point new_min(min_corner.x, center.y);
+            point new_max(center.x, max_corner.y);
             region *r = new region(new_min, new_max);
             return *r;
         }
@@ -146,8 +147,8 @@ public:
             return *r;
         }
         if (q == Quadrant::SE) {
-            point new_min(center.x(), min_corner.y());
-            point new_max(max_corner.x(), center.y());
+            point new_min(center.x, min_corner.y);
+            point new_max(max_corner.x, center.y);
             region *r = new region(new_min, new_max);
             return *r;
         }

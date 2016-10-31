@@ -76,10 +76,14 @@ private:
     bool draw_as_line;
     bool draw_bodies;
 
-    std::vector<int> body_numbers { 10, 15, 25, 50, 100, 250, 500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 6000, 7000, 8000, 9000, 10000};
+    std::vector<int> body_numbers { 10, 15, 25, 50, 100, 250, 500, 1000, 2000, 3000, 4000, 5000, 10000, 25000, 50000, 100000, 250000};
     int body_number_index = 6;
 
+    // timing variables
     std::vector<clock_t> times;
+    double fps;
+    double frame_draw_time;
+    // double avg_draw_time;
 
     // todo: add the region to the Basic APP
     region tree_region;
@@ -87,7 +91,6 @@ private:
 
     void run_multigalaxy();
     void run_single_galaxy();
-
 };
 
 void prepareSettings( BasicApp::Settings* settings )
@@ -240,13 +243,24 @@ void BasicApp::draw()
     std::stringstream display_text;
     display_text << "Number of Bodies: " << bodies.size();
 
+    //std::stringstream timing_display_01;
+    std::stringstream timing_display_02;
+    std::stringstream timing_display_03;
+    //timing_display_01 << "avg draw time: " << avg_draw_time;
+    timing_display_02 << "last draw time: " << frame_draw_time;
+    timing_display_03 << "fps: " << fps;
+
 
     TextLayout layout;                               // controls the layout
 
     layout.clear(ColorA(0.1f, 0.1f, 0.1f, 0.7f));
     layout.setColor(Color(0.1f, 0.9f, 0.9f));
-    layout.setFont( Font("Arial Black", 30));
+    layout.setFont( Font("Arial Black", 16));
     layout.addCenteredLine(display_text.str());
+    //layout.addCenteredLine(timing_display_01.str());
+    layout.addCenteredLine(timing_display_02.str());
+    layout.addCenteredLine(timing_display_03.str());
+
 
     Surface8u rendered = layout.render( true, true);
     mTexture = gl::Texture2d::create( rendered );
@@ -255,19 +269,15 @@ void BasicApp::draw()
 
 }
 
-
+//
+//  Set up the variables before the update-draw cycle begins
+//
+//
+//
 void BasicApp::setup() {
-    //AppBase::setup();
-    //body_test_1(bodies);
-
     tree_region.set(-1e4, -1e4, 1e4, 1e4);
     draw_region.set( -2.5e3, -2.5e3, 2.5e3, 2.5e3);
 
-    //many_bodies_test(bodies);
-    //auto center = getWindowCenter();
-    //add_galaxy_to_body_list(bodies, vec2_to_point(center));
-
-    //region galaxy_region(-1e2, -1e2, 1e2, 1e2);
     create_two_galaxies(bodies, draw_region);
 
     go_go_go = false;
@@ -276,24 +286,8 @@ void BasicApp::setup() {
 
     draw_bodies = true;
 
-    // find max x and y vels
-    //
-    double max_x_vel = 0, max_y_vel = 0;
-
-
-    // todo: remove test code below when un-needed
-    for (auto &b : bodies) {
-        auto velx = b->get_velocity().x();
-        auto vely = b->get_velocity().y();
-        max_x_vel = velx > max_x_vel ? velx : max_x_vel;
-        max_y_vel = vely > max_y_vel ? vely : max_y_vel;
-    }
-
-
-
-    std::cout << "max x vel: " << max_x_vel << ", and max_y_vel: " << max_y_vel << std::endl;
-    std::cout << "we are working with " << bodies.size() << " bodies" << std::endl;
-
+    fps = 0;
+    frame_draw_time = 0;
 }
 
 void BasicApp::update() {
@@ -306,15 +300,22 @@ void BasicApp::update() {
         auto forces = compute_forces(bodies, r);
         update_bodies_with_forces(bodies, forces);
 
-        //t = clock() - t;
-        //times.push_back(t);
-        //double sum = 0.0;
-        //for (auto &e : times) {
-        //    sum += t;
-        //}
-        //sum /= CLOCKS_PER_SEC;
-        //sum /= times.size();
-        //std::cout << "average time: " << sum << ", for number of bodies = " << bodies.size() << std::endl;
+        t = clock() - t;
+        /*
+        times.push_back(t);
+        double sum = 0.0;
+        for (auto &e : times) {
+            sum += t;
+        }
+        sum /= CLOCKS_PER_SEC;
+        sum /= times.size();
+        */
+        // update time vars for on-screen display
+        //avg_draw_time = sum;
+        frame_draw_time = (double) t / (double) CLOCKS_PER_SEC;
+        fps = 1 / frame_draw_time;
+
+        // std::cout << "average time: " << sum << ", for number of bodies = " << bodies.size() << std::endl;
 
     }
 

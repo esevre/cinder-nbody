@@ -13,7 +13,7 @@
 
 // convert between cinder and my custom point types
 ci::vec2 point_to_vec2(const point p) {
-    return ci::vec2(p.x(), p.y());
+    return ci::vec2(p.x, p.y);
 }
 point vec2_to_point(const ci::vec2 v2) {
     return point(v2.x, v2.y);
@@ -25,23 +25,23 @@ point vec2_to_point(const ci::vec2 v2) {
 //   Used to convert between point on screen, and point in computational space
 //
 ci::ivec2 scale_point_to_screen(const point &p, const region &r, const ci::ivec2 screen) {
-    double x_offset = r.get_min_corner().x();
-    double y_offset = r.get_min_corner().y();
+    double x_offset = r.get_min_corner().x;
+    double y_offset = r.get_min_corner().y;
 
     double x_scale = screen.x / r.width();
     double y_scale = screen.y / r.height();
 
     double scale = x_scale > y_scale ? y_scale : x_scale;
 
-    double x = (p.x() - x_offset)*scale;
-    double y = (p.y() - y_offset)*scale;
+    double x = (p.x - x_offset)*scale;
+    double y = (p.y - y_offset)*scale;
 
     ci::ivec2 pt((int)x, (int)y);
     return pt;
 }
 point scale_vec2_to_point(const ci::vec2 &v, const region &r, const ci::vec2 screen) {
-    double x_offset = r.get_min_corner().x();
-    double y_offset = r.get_min_corner().y();
+    double x_offset = r.get_min_corner().x;
+    double y_offset = r.get_min_corner().y;
 
     double x_scale = screen.x / r.width();
     double y_scale = screen.y / r.height();
@@ -55,8 +55,9 @@ point scale_vec2_to_point(const ci::vec2 &v, const region &r, const ci::vec2 scr
     return pt;
 }
 
-
+//
 // todo: figure out how to remove bodies, following code isn't working
+//
 void pluck_outside_bodies(std::vector<std::shared_ptr<body>> &bodies, const region &r) {
     // use remove if to remove all elements outside the tree
     auto ptr_begin = bodies.begin();
@@ -82,23 +83,38 @@ void pluck_outside_bodies(std::vector<std::shared_ptr<body>> &bodies, const regi
 
 }
 
+//
+//  Compute forces for each body in the body vector
+//
 std::vector<point> compute_forces(std::vector<std::shared_ptr<body>> &bodies, const region r){
+    // Create tree for force computation
     bh_tree tree(r);
 
-    // todo: uncomment code below once it is fixed
+    // todo: uncomment code below once code to remove bodies is fixed
     //pluck_outside_bodies(bodies, tree.get_global_region());
 
-
+    //
+    //  Put bodies in the tree
+    //
     for (int i = 0; i < bodies.size(); ++i) {
         tree.insert_body(bodies[i]);
     }
+    //
+    // Update the tree so that all Conglomerate nodes will have the
+    //   proper mass and position (based on center of gravity)
+    //   this is much faster if we do it once all bodies are in place
+    //
     tree.update();
 
+    //
+    // Compute vector of forces for each body
+    //
     std::vector<point> forces;
     for (auto &b : bodies) {
         point force = tree.compute_force(b);
         forces.push_back(force);
     }
+
     return forces;
 }
 
@@ -114,7 +130,11 @@ void update_bodies_with_forces(std::vector<std::shared_ptr<body>> &bodies, const
 }
 
 
-// todo: modify the function below to add bodies that are drawn on by user
+//
+//  Add bodies, based on a screen position
+//
+//  This uses scaling functions
+//
 void add_body_to_bodies(std::vector<std::shared_ptr<body>> &bodies, ci::vec2 screen, ci::vec2 pos, region disp_region) {
     point pt = scale_vec2_to_point(pos, disp_region, screen);
     double mass = 5000;

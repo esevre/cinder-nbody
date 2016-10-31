@@ -284,18 +284,10 @@ public:
             return force;
         }
 
-        // force computation for leaf nodes
-        if (this->state == NodeState::LEAF) {
-            // get magnitude of force:
-            double force_magnitude = G*b->get_mass() * my_body->get_mass() / (d*d);
-            point force_direction = my_body->get_position() - b->get_position();
-            force_direction /= d; // normalize the force direction
-            force_direction *= force_magnitude;
-            return force_direction;
-        }
-
-        // if s/d < theta the region is far enough away to compute force
-        if (sd_ratio <= theta) {
+        // Compute the force on the body if this node is a leaf,
+        // or the sd ratio for this node and the body are less than our theta
+        //
+        if (this->state == NodeState::LEAF or sd_ratio <= theta) {
             // Force magnitude and direction
             double force_magnitude = G*b->get_mass() * my_body->get_mass() / (d*d);
             point force_direction = my_body->get_position() - b->get_position();
@@ -305,6 +297,7 @@ public:
         }
         //
         //   if the s/d condition is not met, try again for sub-nodes
+        //     (this will terminate when it reaches a leaf node)
         //
         if (nw != nullptr) {
             force += nw->compute_force(b);
@@ -322,6 +315,11 @@ public:
         return force;
     }
 
+    //
+    // Updates the masses and positions for body nodes
+    //
+    //  This calls recursively through the subnodes
+    //
     void update_body() {
         if (state == NodeState::LEAF) {
             return; // for leafs, do nothing
@@ -406,7 +404,6 @@ public:
 
     }
 
-    // todo: fix the stream so it indents better for inner nodes
     friend std::ostream &operator<<(std::ostream &os, const bh_tree_node &node) {
         os << "\n" << "mass: " << *(node.my_body) << " : " << node.my_region << std::endl;
         os << "nw: ";

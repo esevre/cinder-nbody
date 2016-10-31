@@ -33,8 +33,10 @@ public:
     void set_region(region r) { global_region = r; }
     //
     //
-    //  todo: Add test function to check that this is inserting correctly
-    //  todo: Add test function to ensure that leaves contain ACTUAL data, while Conglomerates contain an average of leaves
+    //
+    //  For testing I should add test functions listed below:
+    //    todo: Add test function to check that this is inserting correctly
+    //    todo: Add test function to ensure that leaves contain ACTUAL data, while Conglomerates contain an average of leaves
     //
     //
     // This is a tree of shared pointers, so the added body must be a shared pointer
@@ -81,7 +83,11 @@ public:
         prev->add_node(b);
         // originally I would update all the bodies each step,
         // this increased the number of computations slowing it down.
-        //root->update_body();
+        //
+        // This line below will slow down the code increadibly. We need to run "update body" on root,
+        // but we should only do this after we have added all the nodes to the tree.
+        // ** **  DO NOT UNCOMMENT THE LINE BELOW   ** **
+        //  root->update_body();
     }
     void update() { root->update_body(); }
 
@@ -109,7 +115,6 @@ public:
         }
         return os;
     }
-
 
 };
 

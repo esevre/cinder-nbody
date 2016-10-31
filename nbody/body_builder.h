@@ -22,22 +22,7 @@
 //
 //  Simple body test
 //
-//  Create a large central mass, with 4 orbiting bodies
-//
-//  Basically I am putting four earths in orbit around our sun
-//
-//  units:
-//     mass     : kg
-//     distance : km
-//     time     : sec (?change to days maybe)
-//
-//  central_body  = mass: 1.989 x 10^30 kg, position = (0, 0), m_velocity = (0, 0)
-//  orbiting_body = mass: 5.972 × 10^24 kg
-//                  location : 150,000,000 km from center
-//                  m_velocity : v = sqrt( G*mass / r)  with G - gravitational constant, r - distance to center
-//  G = 6.674e−11  N⋅m^2/kg^2
-//  G = 6.674e-11  m^3/(s⋅kg)^2
-//  G = 6.674e-20  km^3/(s⋅kg)^2
+//  Looks at the orbit of four bodies around a large Central mass
 //
 //
 //  We need the input to be a vector of shared pointers
@@ -45,10 +30,6 @@ void body_test_1(std::vector<std::shared_ptr<body>> &bodies) {
     double G = 6.674e-14;
 
     bodies.clear(); // empty the list
-    // use the shared pointer constructor
-//    std::shared_ptr<body> central_body = std::make_shared<body>(1.989e30, point(0,0), point(0,0));
-//    double mass = 5.972e24;
-//    double distance = 1.5e8;
 
     double big_mass = 200;
     std::shared_ptr<body> central_body = std::make_shared<body>(big_mass, point(0,0), point(0,0));
@@ -127,11 +108,11 @@ void many_bodies_test(std::vector<std::shared_ptr<body>> &bodies, int num_bodies
 
 
     for (int i = 0; i < num_bodies; ++i) {
-        double radius = generate_random_in_range(500, 1000); // random radius between 5000 and 10000
-        double theta = generate_random_in_range(0, 2*pi);  // random between 0 and 2*pi
+        double radius = generate_random_in_range(400, 1500);     // random radius between 5000 and 10000
+        double theta = generate_random_in_range(0, 2*pi);        // random between 0 and 2*pi
         double phi = theta + pi / 4;
 
-        double velocity = 0.75*std::sqrt(G*(big_mass + mass) / radius);
+        double velocity = 0.99*std::sqrt(G*(big_mass + mass) / radius);
 
 
         double x = radius * cos(theta);
@@ -185,8 +166,8 @@ void add_galaxy_to_body_list(std::vector<std::shared_ptr<body>> &bodies, point c
         double velocity = 0.75*std::sqrt(G*(big_mass + mass) / radius);
 
 
-        double x = radius * cos(theta) + center.x();
-        double y = radius * sin(theta) + center.y();
+        double x = radius * cos(theta) + center.x;
+        double y = radius * sin(theta) + center.y;
 
         double vx = velocity * cos(phi);
         double vy = velocity * sin(phi);
